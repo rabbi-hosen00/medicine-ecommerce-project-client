@@ -15,6 +15,7 @@ import MyInventory from '../pages/Dashboard/Seller/MyInventory'
 import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import ManageMadicine from '../pages/Dashboard/Seller/ManageMadicine'
+import Shop from '../pages/Shop/Shop'
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/shop',
+        element: <PrivateRoute><Shop/></PrivateRoute>,
       },
       {
         path: '/plant/:id',

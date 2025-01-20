@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      console.log("state captured", currentUser?.email);
+      console.log("state captured", currentUser);
       if (currentUser?.email) {
         const user = { email: currentUser.email };
 
@@ -91,7 +91,7 @@ const AuthProvider = ({ children }) => {
           email: currentUser?.email,
         }
         )
-
+        
         // Get jwt token
         axios
           .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
