@@ -7,14 +7,15 @@ import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import ShopCard from "../Shop/ShopCard";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
+import axios from "axios";
 
 const Shop = () => {
-    const axiosSecure = useAxiosSecure()
+    // const axiosSecure = useAxiosSecure()
     const { data: medicines, isLoading } = useQuery({
         queryKey: ["medicine"],
         queryFn: async () => {
-            const { data } = await axiosSecure(`/medicine`);
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/medicine`);
             return data;
         },
     });

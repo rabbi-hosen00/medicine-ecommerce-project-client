@@ -1,23 +1,26 @@
 
 
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
+import axios from "axios";
 
 const DiscountProduct = () => {
-    const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
     const { data: medicines, isLoading } = useQuery({
         queryKey: ["medicine"],
         queryFn: async () => {
-            const { data } = await axiosSecure(`/medicine`);
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/medicine`);
             return data;
         },
     });
+
+    
 
     if (isLoading) {
         return <LoadingSpinner />;
