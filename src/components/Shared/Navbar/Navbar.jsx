@@ -52,10 +52,11 @@ const Navbar = () => {
               {/* cart icon section */}
               <NavLink to="/cart"
                 className={({ isActive }) =>
-                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                  isActive ? "text-red-500 font-semibold flex mr-4" : "text-gray-600 hover:text-gray-800 flex mr-4"
                 }
               >
                 <AiOutlineShoppingCart size={20} />
+                <div className="badge badge-secondary">+0</div>
               </NavLink>
               <div
                 className="relative cursor-pointer"

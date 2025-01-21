@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -5,8 +7,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 
 const MedicineForm = () => {
-  const {user} = useAuth()
-  const axiousSecure = useAxiosSecure()
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     itemName: "",
@@ -18,6 +20,7 @@ const MedicineForm = () => {
     massUnit: "Mg",
     unitPrice: "",
     discountPercentage: 0,
+    quantity: 1, // New quantity field
   });
 
   const handleChange = (e) => {
@@ -37,6 +40,7 @@ const MedicineForm = () => {
       company,
       massUnit,
       unitPrice,
+      quantity,
     } = formData;
 
     if (
@@ -47,7 +51,8 @@ const MedicineForm = () => {
       !category ||
       !company ||
       !massUnit ||
-      !unitPrice
+      !unitPrice ||
+      !quantity
     ) {
       Swal.fire({
         icon: "error",
@@ -58,21 +63,20 @@ const MedicineForm = () => {
     }
 
     try {
-      await axiousSecure.post("/medicine", {
+      await axiosSecure.post("/medicine", {
         ...formData,
         seller: {
           name: user?.displayName,
           image: user?.photoURL,
           email: user?.email,
         },
-      }); // Replace with your actual API endpoint
+      });
       Swal.fire({
         icon: "success",
-        title: "success",
-        text: `success to add medicine:`,
-      })
-      
-      setIsModalOpen(false)
+        title: "Success",
+        text: `Successfully added the medicine.`,
+      });
+      setIsModalOpen(false);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -207,6 +211,18 @@ const MedicineForm = () => {
                   className="w-full border rounded px-3 py-2"
                   placeholder="Enter discount percentage"
                   min="0"
+                />
+              </div>
+              <div>
+                <label className="block font-medium">Quantity</label>
+                <input
+                  type="number"
+                  name="quantity"
+                  value={formData.quantity}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                  placeholder="Enter quantity"
+                  min="1"
                 />
               </div>
               <div className="flex justify-end gap-4">

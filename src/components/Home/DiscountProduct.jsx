@@ -20,7 +20,7 @@ const DiscountProduct = () => {
         },
     });
 
-    
+
 
     if (isLoading) {
         return <LoadingSpinner />;
@@ -37,6 +37,7 @@ const DiscountProduct = () => {
                 Discounted Products
             </h2>
             <Swiper
+                key={medicines._id}
                 modules={[Navigation, Pagination]}
                 navigation
                 pagination={{ clickable: true }}
