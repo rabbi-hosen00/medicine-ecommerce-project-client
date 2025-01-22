@@ -2,13 +2,16 @@
 import Container from '../Container';
 import { AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
 import { useState } from 'react';
-import { Link ,NavLink} from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import avatarImg from '../../../assets/images/placeholder.jpg';
 import logo from '../../../assets/images/logo-flat.png';
+import useCard from '../../../pages/Shop/useCard';
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [cart] = useCard()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
@@ -18,7 +21,7 @@ const Navbar = () => {
   };
 
   const activeLinkClass = "text-red-500 font-semibold";
-  
+
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -32,18 +35,18 @@ const Navbar = () => {
 
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-6">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
-              }
-            >
-              Home
-            </NavLink>
-              <NavLink to="/shop" 
-               className={({ isActive }) =>
-                isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
-              }
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink to="/shop"
+                className={({ isActive }) =>
+                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                }
               >
                 Shop
               </NavLink>
@@ -54,7 +57,7 @@ const Navbar = () => {
                 }
               >
                 <AiOutlineShoppingCart size={20} />
-                <div className="badge badge-secondary">+0</div>
+                <div className="badge badge-secondary">+{cart.length}</div>
               </NavLink>
               <div
                 className="relative cursor-pointer"

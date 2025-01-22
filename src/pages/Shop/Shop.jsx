@@ -29,7 +29,7 @@ const Shop = () => {
     return (
         <Container>
             <Helmet>
-                <title> medicine | Buy Your Desired medicine</title>
+                <title> shop | Buy Your Desired medicine</title>
             </Helmet>
 
             {medicines && medicines.length > 0 ? (
