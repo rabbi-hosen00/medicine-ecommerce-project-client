@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 
-
-
-
 import { useState } from "react";
 import MedicineDetailsModal from "../Shop/MedicineDetailsModal ";
 import { FaEye } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-// import MedicineDetailsModal from "./MedicineDetailsModal";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+
+
 
 const ShopCard = ({ medicine }) => {
+    const axiosSecure = useAxiosSecure()
+    const { user } = useAuth();
+
     const {
         // category,
         company,
@@ -19,13 +23,39 @@ const ShopCard = ({ medicine }) => {
         // massUnit,
         unitPrice,
         // userImage,
+        _id
     } = medicine;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleAddToCard = (product)=>{
-        console.log(product)
+    const handleAddToCard = (product) => {
+        if (user && user.email) {
+            // send card item to the database
+            console.log(product, user.email)
+            const cartItem = {
+                menuId: _id,
+                email: user.email,
+                image: product.image,
+                quantity: product.quantity,
+                name: product.itemName,
+                company: product.company
+            }
+            axiosSecure.post("/cards", cartItem)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            title: `${product.itemName} added to the card`,
+                            icon: "success",
+                            draggable: true
+                        });
+                    }
+                })
+        }
     }
+
+
+
 
 
 

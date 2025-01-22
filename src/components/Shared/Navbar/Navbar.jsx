@@ -1,6 +1,4 @@
 
-
-
 import Container from '../Container';
 import { AiOutlineMenu, AiOutlineShoppingCart } from 'react-icons/ai';
 import { useState } from 'react';
