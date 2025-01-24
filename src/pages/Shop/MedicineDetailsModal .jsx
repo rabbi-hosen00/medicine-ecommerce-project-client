@@ -12,7 +12,6 @@ const MedicineDetailsModal = ({ medicine, onClose }) => {
         discountPercentage,
         massUnit,
         image,
-        
     } = medicine;
 
 
@@ -33,7 +32,7 @@ const MedicineDetailsModal = ({ medicine, onClose }) => {
                 />
                 <div className="space-y-2 text-sm md:text-base">
                     <h2 className="text-xl font-bold mb-4 text-center">{itemName}</h2>
-                
+
                     <div className="space-y-4">
                         <div className="flex justify-between items-center gap-4 border-b pb-2">
                             <p>
@@ -51,16 +50,15 @@ const MedicineDetailsModal = ({ medicine, onClose }) => {
                                 <strong>Price:</strong> ${unitPrice}
                             </p>
                         </div>
-                        <div className="flex justify-between items-center gap-4">
+                        <div className="flex justify-between items-center gap-4 border-b pb-2">
                             <p>
                                 <strong>Discount:</strong> {discountPercentage}%
                             </p>
                             <p>
-                                <strong>Mass Unit:</strong> {massUnit}
+                                <strong>Mass Unit:</strong>{massUnit}
                             </p>
                         </div>
                     </div>
-
                 </div>
                 <button
                     className="mt-4 w-full px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"

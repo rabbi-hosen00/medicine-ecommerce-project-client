@@ -1,5 +1,4 @@
 
-
 import { useQuery } from "@tanstack/react-query";
 import Container from "../../components/Shared/Container";
 
@@ -10,6 +9,8 @@ import { Helmet } from "react-helmet-async";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 import axios from "axios";
 
+
+
 const Shop = () => {
     // const axiosSecure = useAxiosSecure()
     const { data: medicines, isLoading } = useQuery({
@@ -19,6 +20,7 @@ const Shop = () => {
             return data;
         },
     });
+
 
     const [selectedMedicine, setSelectedMedicine] = useState(null);
 

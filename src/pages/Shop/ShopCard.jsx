@@ -7,12 +7,14 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useCard from "./useCard";
 
 
 
 const ShopCard = ({ medicine }) => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth();
+    const [, refetch] = useCard()
 
     const {
         // category,
@@ -38,7 +40,8 @@ const ShopCard = ({ medicine }) => {
                 image: product.image,
                 quantity: product.quantity,
                 name: product.itemName,
-                company: product.company
+                company: product.company,
+                price : product.unitPrice,
             }
             axiosSecure.post("/cards", cartItem)
                 .then(res => {
@@ -49,14 +52,12 @@ const ShopCard = ({ medicine }) => {
                             icon: "success",
                             draggable: true
                         });
+                        // refatch cart to update the cart items counts
+                        refetch()
                     }
                 })
         }
     }
-
-
-
-
 
 
     return (

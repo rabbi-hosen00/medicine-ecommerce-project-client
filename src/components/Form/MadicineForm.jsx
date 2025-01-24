@@ -213,7 +213,7 @@ const MedicineForm = () => {
                   min="0"
                 />
               </div>
-              <div>
+              {/* <div>
                 <label className="block font-medium">Quantity</label>
                 <input
                   type="number"
@@ -224,7 +224,7 @@ const MedicineForm = () => {
                   placeholder="Enter quantity"
                   min="1"
                 />
-              </div>
+              </div> */}
               <div className="flex justify-end gap-4">
                 <button
                   type="button"

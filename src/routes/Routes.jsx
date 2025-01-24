@@ -16,6 +16,8 @@ import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import ManageMadicine from '../pages/Dashboard/Seller/ManageMadicine'
 import Shop from '../pages/Shop/Shop'
+import MyCard from '../pages/MyCart/MyCard'
+import Checkout from '../pages/Payment/Checkout'
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +31,16 @@ export const router = createBrowserRouter([
       },
       {
         path: '/shop',
-        element: <PrivateRoute><Shop/></PrivateRoute>,
+        element: <PrivateRoute><Shop /></PrivateRoute>,
+      },
+      {
+        path: '/checkout/:id',
+        element: <Checkout />,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/checkout/${params.id}`),
+      },
+      {
+        path: '/cart',
+        element: <PrivateRoute><MyCard /></PrivateRoute>,
       },
       {
         path: '/plant/:id',
