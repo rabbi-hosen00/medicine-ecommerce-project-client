@@ -39,6 +39,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Invoice /></PrivateRoute>,
       },
       {
+        path: "/profile",
+        element: <Profile></Profile>,
+      },
+      {
         path: '/checkout/:id',
         element: <Checkout />,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/checkout/${params.id}`),

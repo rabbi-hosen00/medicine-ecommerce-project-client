@@ -1,6 +1,4 @@
 
-
-
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +9,7 @@ import jsPDF from "jspdf"; // For PDF export
 import "jspdf-autotable"; // For table formatting in PDF
 import { format } from "date-fns"; // For date formatting
 
-const EmployeeData = () => {
+const Invoice = () => {
     const { user } = useAuth();
 
     const { data: payments = [] } = useQuery({
@@ -60,11 +58,11 @@ const EmployeeData = () => {
     return (
         <>
             <Helmet>
-                <title> Medicine | Employee Data</title>
+                <title> Medicine | Invoice Data</title>
             </Helmet>
             <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
                 <div className="max-w-7xl mx-auto bg-white p-4 sm:p-6 shadow-md rounded-lg">
-                    <h1 className="text-xl sm:text-2xl font-bold mb-4">Employee Data</h1>
+                    <h1 className="text-xl sm:text-2xl font-bold mb-4">User Invoice: {user.displayName} </h1>
                     <p className="text-gray-600 mb-6">Manage and export your data with ease.</p>
 
                     <div className="flex flex-wrap items-center gap-4 mb-4">
@@ -126,4 +124,4 @@ const EmployeeData = () => {
     );
 };
 
-export default EmployeeData;
+export default Invoice;
