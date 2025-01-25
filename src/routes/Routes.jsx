@@ -18,6 +18,7 @@ import ManageMadicine from '../pages/Dashboard/Seller/ManageMadicine'
 import Shop from '../pages/Shop/Shop'
 import MyCard from '../pages/MyCart/MyCard'
 import Checkout from '../pages/Payment/Checkout'
+import Invoice from '../pages/Invoice/Invoice'
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: '/shop',
         element: <PrivateRoute><Shop /></PrivateRoute>,
+      },
+      {
+        path: "/invoice",
+        element: <Invoice />,
       },
       {
         path: '/checkout/:id',

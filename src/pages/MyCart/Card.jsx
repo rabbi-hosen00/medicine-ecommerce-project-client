@@ -54,6 +54,7 @@ const Card = ({ medicine }) => {
 
     };
 
+    
     const handleRemove = (id) => {
         console.log("Item removed:", id);
         Swal.fire({

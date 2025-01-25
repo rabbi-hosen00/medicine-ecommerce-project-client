@@ -1,71 +1,31 @@
 
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
-// import {  useParams } from "react-router-dom";
 
-import { useLoaderData } from "react-router-dom";
+import CheckoutFrom from "./CheckoutFrom";
+
+
+// TODO: add publishable key
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const Checkout = () => {
-    // Get the data passed by the loader
-    // const { checkoutId } = useParams();
-    const checkoutData = useLoaderData();
+ 
 
-
-    console.log("Checkout data:",checkoutData );
-
-    return (
-        <>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. At natus modi ea explicabo debitis commodi? Perferendis reprehenderit recusandae, distinctio quas similique, corrupti id libero necessitatibus soluta iusto harum praesentium nostrum?
-        </>
-    );
+ 
+  return (
+    <div className="max-w-2xl mx-auto  mt-32 p-5 bg-white rounded-2xl shadow-xl">
+      <h2 className="text-xl text-center text-orange-400 font-semibold mb-4 mt-6">Complete Payment</h2>
+      
+      <div>
+        <Elements stripe={stripePromise}>
+            <CheckoutFrom></CheckoutFrom>
+        </Elements>
+      </div>
+    </div>
+  );
 };
 
 export default Checkout;
-
-
-// import  { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
-// const Checkout = () => {
-//   const { checkoutId } = useParams();  // Extracts the checkoutId from the URL
-//   const [checkoutData, setCheckoutData] = useState(null);
-
-
-//   console.log(checkoutId)
-
-//   useEffect(() => {
-//     // Fetch checkout data using the checkoutId
-//     const fetchCheckoutData = async () => {
-//       try {
-//         const response = await fetch(`http://localhost:5000/checkout/${checkoutId}`); // Make sure to adjust the API endpoint URL to match your backend
-//         const data = await response.json();
-//         setCheckoutData(data);
-//       } catch (error) {
-//         console.error("Error fetching checkout data:", error);
-//       }
-//     };
-
-//     if (checkoutId) {
-//       fetchCheckoutData();
-//     }
-//   }, [checkoutId]);  // The effect will run when the checkoutId changes
-
-//   // Render the checkout data if available
-//   return (
-//     <div>
-//       {checkoutData ? (
-//         <div>
-//           <h1>{checkoutData.name}</h1>
-//           <p>Company: {checkoutData.company}</p>
-//           <p>Quantity: {checkoutData.quantity}</p>
-//           <p>Total Price: {checkoutData.totalPrice ? checkoutData.totalPrice : 'Not available'}</p>
-//         </div>
-//       ) : (
-//         <p>Loading checkout data...</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Checkout;
 
