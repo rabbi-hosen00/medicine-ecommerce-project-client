@@ -59,6 +59,13 @@ const Navbar = () => {
                 <AiOutlineShoppingCart size={20} />
                 <div className="badge badge-secondary">+{cart.length}</div>
               </NavLink>
+              <NavLink to="/invoice"
+                className={({ isActive }) =>
+                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                }
+              >
+                Invoice
+              </NavLink>
               <div
                 className="relative cursor-pointer"
                 onClick={() => setIsLangOpen(!isLangOpen)}

@@ -82,6 +82,7 @@ const CheckoutFrom = () => {
                 // now save the payment in the database
                 const payment = {
                     email: user.email,
+                    name: user.displayName,
                     price: totalPrice,
                     itemName: checkoutData.name,
                     transactionId: paymentIntent.id,
