@@ -24,7 +24,7 @@ const ShopCard = ({ medicine }) => {
         itemName,
         // massUnit,
         unitPrice,
-        // userImage,
+        image,
         _id
     } = medicine;
 
@@ -41,7 +41,7 @@ const ShopCard = ({ medicine }) => {
                 quantity: product.quantity,
                 name: product.itemName,
                 company: product.company,
-                price : product.unitPrice,
+                price: product.unitPrice,
             }
             axiosSecure.post("/cards", cartItem)
                 .then(res => {
@@ -63,9 +63,16 @@ const ShopCard = ({ medicine }) => {
     return (
         <>
             <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                <td className="px-6 py-4 text-sm text-gray-500">
+                    <img
+                        src={image}
+                        alt={itemName}
+                        className="h-16 w-16 rounded-lg object-cover"
+                    />
+                </td>
                 <td className="px-6 py-4 text-sm font-medium text-gray-900">{itemName}</td>
                 <td className="px-6 py-4 text-sm text-gray-500">{genericName}</td>
-                {/* {/* <td className="px-6 py-4 text-sm text-gray-500">{category}</td> */}
+
                 <td className="px-6 py-4 text-sm text-gray-500">{company}</td>
                 <td className="px-6 py-4 text-sm text-green-600 font-bold">
                     ${unitPrice}

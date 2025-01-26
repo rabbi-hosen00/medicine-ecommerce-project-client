@@ -39,9 +39,9 @@ const Shop = () => {
                     <table className="table-auto   border-collapse border border-gray-300 w-[80%] text-center">
                         <thead>
                             <tr className="bg-gray-100">
+                            <th className="border border-gray-300 p-2">Image</th>
                                 <th className="border border-gray-300 p-2">Item Name</th>
                                 <th className="border border-gray-300 p-2">Generic Name</th>
-                                {/* <th className="border border-gray-300 p-2">Category</th> */}
                                 <th className="border border-gray-300 p-2">Company</th>
                                 <th className="border border-gray-300 p-2">Price</th>
                                 <th className="border border-gray-300 p-2">Discount</th>
@@ -101,3 +101,9 @@ const Shop = () => {
 };
 
 export default Shop;
+
+
+
+
+
+
