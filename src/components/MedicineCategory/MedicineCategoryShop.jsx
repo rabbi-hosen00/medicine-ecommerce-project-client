@@ -1,13 +1,20 @@
 
+
+
 import { useQuery } from "@tanstack/react-query";
 import Container from "../../components/Shared/Container";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
-import ShopCard from "../Shop/ShopCard";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import ShopCard from "../../pages/Shop/ShopCard";
+import { useLoaderData } from "react-router-dom";
 
-const Shop = () => {
+const MedicineCategoryShop = () => {
+    const medicineCategory = useLoaderData(); // Get the category data from loader
+    const { category } = medicineCategory;
+    console.log("medicine category data:", medicineCategory);
+
     const { data: medicines, isLoading } = useQuery({
         queryKey: ["medicine"],
         queryFn: async () => {
@@ -26,8 +33,13 @@ const Shop = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState("asc"); // 'asc' for ascending, 'desc' for descending
 
-    // Filter and sort medicines
-    const filteredMedicines = medicines
+    // Filter medicines by category
+    const filteredCategoryMedicines = medicines?.filter(
+        (medicine) => medicine.category === category
+    );
+
+    // Filter, search, and sort medicines
+    const filteredMedicines = filteredCategoryMedicines
         ?.filter((medicine) =>
             medicine.itemName.toLowerCase().includes(searchQuery.toLowerCase())
         )
@@ -80,8 +92,15 @@ const Shop = () => {
     return (
         <Container>
             <Helmet>
-                <title>Medicine || Medicine Category</title>
+                <title>{`Shop | ${category} Medicines`}</title>
             </Helmet>
+
+            {/* Header */}
+            <div className="flex justify-center mt-5 items-center">
+                <h1 className="font-semibold text-3xl text-cyan-600">
+                    {category} Medicines
+                </h1>
+            </div>
 
             {/* Search and Sort Controls */}
             <div className="flex mt-5 flex-col md:flex-row justify-around items-center my-4">
@@ -95,9 +114,9 @@ const Shop = () => {
                 <select
                     value={sortOrder}
                     onChange={handleSortChange}
-                    className="border border-gray-300 p-2 rounded-md"
+                    className="border border-orange-600 p-2 rounded-md"
                 >
-                    <option value="asc" className="text-orange-600">Sort by Price: Low to High</option>
+                    <option value="asc " className="text-orange-600">Sort by Price: Low to High</option>
                     <option value="desc" className="text-orange-600">Sort by Price: High to Low</option>
                 </select>
             </div>
@@ -162,7 +181,7 @@ const Shop = () => {
                     </div>
                 </div>
             ) : (
-                <p>No data available</p>
+                <p>No medicines available for this category.</p>
             )}
 
             {selectedMedicine && (
@@ -203,4 +222,4 @@ const Shop = () => {
     );
 };
 
-export default Shop;
+export default MedicineCategoryShop;

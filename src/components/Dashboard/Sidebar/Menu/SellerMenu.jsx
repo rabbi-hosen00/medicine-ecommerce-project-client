@@ -10,7 +10,7 @@ const SellerMenu = () => {
         // address='add-plant'
         address='manage-medicine'
       />
-      <MenuItem icon={MdHomeWork} label='My Inventory' address='my-inventory' />
+      <MenuItem icon={MdHomeWork} label='Payment history' address='payment-history' />
       <MenuItem
         icon={MdOutlineManageHistory}
         label='Manage Orders'
@@ -21,3 +21,6 @@ const SellerMenu = () => {
 }
 
 export default SellerMenu
+
+
+

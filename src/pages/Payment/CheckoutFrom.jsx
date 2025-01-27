@@ -83,6 +83,7 @@ const CheckoutFrom = () => {
                 const payment = {
                     email: user.email,
                     name: user.displayName,
+                    image:checkoutData.image,
                     price: totalPrice,
                     itemName: checkoutData.name,
                     transactionId: paymentIntent.id,

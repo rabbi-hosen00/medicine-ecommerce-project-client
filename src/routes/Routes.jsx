@@ -11,7 +11,6 @@ import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import Profile from '../pages/Dashboard/Common/Profile'
 import Statistics from '../pages/Dashboard/Common/Statistics'
 import MainLayout from '../layouts/MainLayout'
-import MyInventory from '../pages/Dashboard/Seller/MyInventory'
 import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import ManageMadicine from '../pages/Dashboard/Seller/ManageMadicine'
@@ -19,7 +18,10 @@ import Shop from '../pages/Shop/Shop'
 import MyCard from '../pages/MyCart/MyCard'
 import Checkout from '../pages/Payment/Checkout'
 import Invoice from '../pages/Invoice/Invoice'
-
+import MedicineCategoryShop from '../components/MedicineCategory/MedicineCategoryShop'
+import SellerRoute from './SellerRoute'
+import AdminRoute from './AdminRoute'
+import PaymentHistory from '../pages/Dashboard/Seller/PaymentHistory'
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -32,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/shop',
-        element: <PrivateRoute><Shop /></PrivateRoute>,
+        element: <PrivateRoute><Shop /></PrivateRoute>
       },
       {
         path: "/invoice",
@@ -46,6 +48,11 @@ export const router = createBrowserRouter([
         path: '/checkout/:id',
         element: <Checkout />,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/checkout/${params.id}`),
+      },
+      {
+        path: '/category/:id',
+        element: <MedicineCategoryShop></MedicineCategoryShop>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/category/${params.id}`),
       },
       {
         path: '/cart',
@@ -79,15 +86,19 @@ export const router = createBrowserRouter([
         path: 'manage-medicine',
         element: (
           <PrivateRoute>
-            <ManageMadicine />
+            <SellerRoute>
+              <ManageMadicine />
+            </SellerRoute>
           </PrivateRoute>
         ),
       },
       {
-        path: 'my-inventory',
+        path: 'payment-history',
         element: (
           <PrivateRoute>
-            <MyInventory />
+            <SellerRoute>
+              <PaymentHistory />
+            </SellerRoute>
           </PrivateRoute>
         ),
       },
@@ -95,7 +106,9 @@ export const router = createBrowserRouter([
         path: 'manage-users',
         element: (
           <PrivateRoute>
-            <ManageUsers />
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -117,7 +130,14 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manage-orders',
-        element: <ManageOrders />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <ManageOrders />
+            </SellerRoute>
+          </PrivateRoute>
+        )
+
       },
     ],
   },

@@ -90,7 +90,7 @@ const MedicineForm = () => {
     <div className="mt-7 text-center">
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        className="bg-orange-300 text-white w-[50%] px-4 py-2 rounded hover:bg-orange-600"
       >
         Add Medicine
       </button>
@@ -153,12 +153,15 @@ const MedicineForm = () => {
                   className="w-full border rounded px-3 py-2"
                 >
                   <option value="">Select Category</option>
-                  <option value="Tablet">Tablet</option>
-                  <option value="Syrup">Syrup</option>
-                  <option value="Capsule">Capsule</option>
-                  <option value="Injection">Injection</option>
-                  <option value="Ointment">Ointment</option>
-                  <option value="Supplement">Supplement</option>
+                  <option value="Tablet">tablet</option>
+                  <option value="Syrup">syrup</option>
+                  <option value="Capsule">capsule</option>
+                  <option value="Injection">injection</option>
+                  <option value="Ointment">ointment</option>
+                  <option value="Supplement">supplement</option>
+                  <option value="Supplement">antiviral</option>
+                  <option value="Supplement">antacids</option>
+                  <option value="Supplement">analgesics</option>
                 </select>
               </div>
               <div>

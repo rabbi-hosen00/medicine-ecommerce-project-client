@@ -69,12 +69,20 @@ import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import coverImg from "../../../assets/images/cover.jpg";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user , loding} = useAuth();
+  const [role, isLoading] = useRole()
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [localUser, setLocalUser] = useState(user); // Local state for user
   const [selectedImage, setSelectedImage] = useState(null); // Local state for uploaded image preview
+
+  if ( loding, isLoading) {
+    return <LoadingSpinner></LoadingSpinner>
+  }
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -113,6 +121,9 @@ const Profile = () => {
     }
   };
 
+
+  
+
   return (
     <div className="flex justify-center items-center h-screen">
       <Helmet>
@@ -134,7 +145,7 @@ const Profile = () => {
           </a>
 
           <p className="p-2 px-4 text-xs text-white bg-lime-500 rounded-full">
-            Customer
+            {role}
           </p>
           <p className="mt-2 text-xl font-medium text-gray-800">
             User Id: {localUser.uid}
@@ -157,7 +168,7 @@ const Profile = () => {
                 >
                   Update Profile
                 </button>
-                
+
               </div>
             </div>
           </div>

@@ -29,6 +29,7 @@ const Card = ({ medicine }) => {
     const handleCheckout = async () => {
         const cartItem = {
             id: _id,
+            image,
             name,
             company,
             quantity,
@@ -54,7 +55,7 @@ const Card = ({ medicine }) => {
 
     };
 
-    
+
     const handleRemove = (id) => {
         console.log("Item removed:", id);
         Swal.fire({
