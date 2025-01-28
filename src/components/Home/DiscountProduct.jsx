@@ -33,7 +33,7 @@ const DiscountProduct = () => {
 
     return (
         <div className="my-8 w-full max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-center mb-6">
+            <h2 className="text-3xl text-orange-500 font-bold text-center mb-6">
                 Discounted Products
             </h2>
             <Swiper
