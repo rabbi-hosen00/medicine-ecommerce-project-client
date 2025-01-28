@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home/Home'
 import ErrorPage from '../pages/ErrorPage'
@@ -11,7 +12,7 @@ import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import Profile from '../pages/Dashboard/Common/Profile'
 import Statistics from '../pages/Dashboard/Common/Statistics'
 import MainLayout from '../layouts/MainLayout'
-import ManageOrders from '../pages/Dashboard/Seller/ManageOrders'
+
 import MyOrders from '../pages/Dashboard/Customer/MyOrders'
 import ManageMadicine from '../pages/Dashboard/Seller/ManageMadicine'
 import Shop from '../pages/Shop/Shop'
@@ -22,6 +23,10 @@ import MedicineCategoryShop from '../components/MedicineCategory/MedicineCategor
 import SellerRoute from './SellerRoute'
 import AdminRoute from './AdminRoute'
 import PaymentHistory from '../pages/Dashboard/Seller/PaymentHistory'
+import SellerStatistcis from '../components/Dashboard/Statistics/SellerStatistcis'
+import ManageCategory from '../pages/Dashboard/Admin/ManageCategory'
+import PaymentManagement from '../pages/Dashboard/Admin/PaymentManagement'
+import SalesReport from '../pages/Dashboard/Admin/SalesReport'
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -113,6 +118,37 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: 'manage-category',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageCategory />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'payment-management',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <PaymentManagement />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'sales-report',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+               <SalesReport />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      {
         path: 'profile',
         element: (
           <PrivateRoute>
@@ -128,16 +164,16 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
-        path: 'manage-orders',
+        path: 'seller-home',
         element: (
           <PrivateRoute>
             <SellerRoute>
-              <ManageOrders />
+              <SellerStatistcis />
             </SellerRoute>
           </PrivateRoute>
         )
-
       },
     ],
   },

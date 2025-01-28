@@ -1,8 +1,26 @@
 import { Calendar } from 'react-date-range'
 import { FaUserAlt, FaDollarSign } from 'react-icons/fa'
-import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
+import { BsFillCartPlusFill,  } from 'react-icons/bs'
+
+import { useQuery } from '@tanstack/react-query'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import { MdOutlinePendingActions } from 'react-icons/md'
 
 const AdminStatistics = () => {
+
+
+  const axiosSecure = useAxiosSecure();
+
+
+  const { data: stats } = useQuery({
+    queryKey: ['admin-stats'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/admin-stats');
+      return res.data;
+    }
+  })
+
+
   return (
     <div>
       <div className='mt-12'>
@@ -17,10 +35,10 @@ const AdminStatistics = () => {
             </div>
             <div className='p-4 text-right'>
               <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Revenue
+                Total Sales Revenue
               </p>
               <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                $120
+                ${stats?.revenue}
               </h4>
             </div>
           </div>
@@ -33,10 +51,10 @@ const AdminStatistics = () => {
             </div>
             <div className='p-4 text-right'>
               <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Orders
+                Paid Total
               </p>
               <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                120
+                ${stats?.paidTotal}
               </h4>
             </div>
           </div>
@@ -45,14 +63,14 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
             >
-              <BsFillHouseDoorFill className='w-6 h-6 text-white' />
+              <MdOutlinePendingActions className='w-6 h-6 text-white' />
             </div>
             <div className='p-4 text-right'>
               <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Plants
+                Pending Total
               </p>
               <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                120
+                ${stats?.pendingTotal}
               </h4>
             </div>
           </div>
@@ -68,7 +86,7 @@ const AdminStatistics = () => {
                 Total User
               </p>
               <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                10
+                {stats?.users}
               </h4>
             </div>
           </div>

@@ -1,10 +1,24 @@
 
+
+// const SalesReport = () => {
+//     return (
+//         <div>
+//             SalesReport
+//         </div>
+//     );
+// };
+
+// export default SalesReport;
+
+
+
+
 import { useQuery,  } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
-const MyOrders = () => {
+const SalesReport = () => {
     const axiosSecure = useAxiosSecure();
     
 
@@ -35,10 +49,8 @@ const MyOrders = () => {
             <table className="min-w-full table-auto">
                 <thead>
                     <tr className="bg-gray-200 text-left">
-                        <th className="p-2">User Name</th>
                         <th className="p-2">User Email</th>
                         <th className="p-2">Medicine Name</th>
-                        <th className="p-2">Transaction ID</th>
                         <th className="p-2">Price</th>
                         <th className="p-2">Purchase Date</th>
                         <th className="p-2">Status</th>
@@ -47,10 +59,8 @@ const MyOrders = () => {
                 <tbody>
                     {payments.map((payment) => (
                         <tr key={payment.transactionId} className="border-b">
-                            <td className="p-2">{payment.name}</td>
                             <td className="p-2">{payment.email}</td>
                             <td className="p-2">{payment.itemName}</td>
-                            <td className="p-2">{payment.transactionId}</td>
                             <td className="p-2">${payment.price}</td>
                             <td className="p-2">{formatDate(payment.date)}</td>
                             <td className="p-2">{payment.status}</td>
@@ -63,19 +73,7 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
-
-
-
-
-
-
-
-
-
-
-
-
+export default SalesReport;
 
 
 

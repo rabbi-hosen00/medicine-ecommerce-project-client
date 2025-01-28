@@ -8,14 +8,17 @@ import * as XLSX from "xlsx"; // For Excel export
 import jsPDF from "jspdf"; // For PDF export
 import "jspdf-autotable"; // For table formatting in PDF
 import { format } from "date-fns"; // For date formatting
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+
 
 const Invoice = () => {
     const { user } = useAuth();
-
-    const { data: payments = [] } = useQuery({
+   
+    const { data: payments = [], isLoading } = useQuery({
         queryKey: ["payments", user.email],
         queryFn: async () => {
             const res = await axios.get(`${import.meta.env.VITE_API_URL}/payments/${user.email}`);
+           
             return res.data;
         },
         enabled: !!user.email, // Run query only if user.email exists
@@ -55,6 +58,11 @@ const Invoice = () => {
         doc.save("EmployeeData.pdf");
     };
 
+
+    if(isLoading){
+        return <LoadingSpinner></LoadingSpinner>
+    }
+
     return (
         <>
             <Helmet>
@@ -90,6 +98,7 @@ const Invoice = () => {
                                     <th className="border border-gray-300 px-4 py-2 text-left">Transaction ID</th>
                                     <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
                                     <th className="border border-gray-300 px-4 py-2 text-left">Purchase Date</th>
+                                    <th className="border border-gray-300 px-4 py-2 text-left">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,6 +121,9 @@ const Invoice = () => {
                                         </td>
                                         <td className="border border-gray-300 px-4 py-2 text-sm sm:text-base">
                                             {payment.date}
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2 text-sm sm:text-base">
+                                            {payment.status}
                                         </td>
                                     </tr>
                                 ))}

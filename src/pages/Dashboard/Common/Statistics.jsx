@@ -3,6 +3,7 @@ import AdminStatistics from '../../../components/Dashboard/Statistics/AdminStati
 import useRole from '../../../hooks/useRole'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import { Navigate } from 'react-router-dom'
+import SellerStatistcis from '../../../components/Dashboard/Statistics/SellerStatistcis'
 const Statistics = () => {
   const [role, isLoading] = useRole()
   if (isLoading) return <LoadingSpinner></LoadingSpinner>
@@ -15,8 +16,12 @@ const Statistics = () => {
         <title>Dashboard</title>
       </Helmet>
       {role === "admin" && <AdminStatistics />}
+      {role === "seller" && <SellerStatistcis />}
+
     </div>
   )
 }
 
 export default Statistics
+
+
