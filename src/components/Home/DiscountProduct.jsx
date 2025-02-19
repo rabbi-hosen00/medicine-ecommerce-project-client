@@ -35,7 +35,7 @@ const DiscountProduct = () => {
 
     return (
         <Container>
-            <div className="my-8  px-4">
+            <div className="my-8 border-spacing-1 px-4">
                 <h2 className="text-3xl text-orange-500 font-bold text-center mb-6">
                     Discounted Products
                 </h2>
