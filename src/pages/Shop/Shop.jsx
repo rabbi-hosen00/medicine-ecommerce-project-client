@@ -1,11 +1,12 @@
 
 import { useQuery } from "@tanstack/react-query";
-import Container from "../../components/Shared/Container";
+
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import ShopCard from "../Shop/ShopCard";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import Container from "../../components/Shared/Container";
 
 const Shop = () => {
     const { data: medicines, isLoading } = useQuery({
@@ -84,7 +85,7 @@ const Shop = () => {
             </Helmet>
 
             {/* Search and Sort Controls */}
-            <div className="flex mt-5 flex-col md:flex-row justify-around items-center my-4">
+            <div className="flex mt-8   flex-col md:flex-row justify-between items-center my-4">
                 <input
                     type="text"
                     value={searchQuery}
@@ -103,8 +104,8 @@ const Shop = () => {
             </div>
 
             {currentMedicines && currentMedicines.length > 0 ? (
-                <div className="pt-4 flex flex-col items-center">
-                    <table className="table-auto border-collapse border border-gray-300 w-[80%] text-center mb-4">
+                <div className="pt-4  flex flex-col items-center">
+                    <table className="table-auto border-collapse border border-gray-300 w-full text-center mb-4">
                         <thead>
                             <tr className="bg-gray-100">
                                 <th className="border border-gray-300 p-2">Image</th>
@@ -129,7 +130,7 @@ const Shop = () => {
                     </table>
 
                     {/* Pagination controls */}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mb-4">
                         <button
                             onClick={handlePreviousPage}
                             disabled={currentPage === 1}
@@ -142,11 +143,10 @@ const Shop = () => {
                             <button
                                 key={index}
                                 onClick={() => handlePageClick(index + 1)}
-                                className={`btn ${
-                                    currentPage === index + 1
+                                className={`btn ${currentPage === index + 1
                                         ? "btn-primary"
                                         : "btn-outline"
-                                }`}
+                                    }`}
                             >
                                 {index + 1}
                             </button>

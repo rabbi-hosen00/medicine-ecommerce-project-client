@@ -43,13 +43,19 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-              <NavLink to="/shop"
-                className={({ isActive }) =>
-                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
-                }
-              >
-                Shop
-              </NavLink>
+
+
+              {user ? (
+                <NavLink
+                  to="/shop"
+                  className={({ isActive }) =>
+                    isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                  }
+                >
+                  Shop
+                </NavLink>
+              ) : null}
+
               {/* cart icon section */}
               <NavLink to="/cart"
                 className={({ isActive }) =>
@@ -58,14 +64,21 @@ const Navbar = () => {
               >
                 <AiOutlineShoppingCart size={20} />
                 <div className="badge badge-secondary">+{cart.length}</div>
+
               </NavLink>
-              <NavLink to="/invoice"
-                className={({ isActive }) =>
-                  isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
-                }
-              >
-                Invoice
-              </NavLink>
+
+              {user && (
+                <NavLink
+                  to="/invoice"
+                  className={({ isActive }) =>
+                    isActive ? activeLinkClass : "text-gray-600 hover:text-gray-800"
+                  }
+                >
+                  Invoice
+                </NavLink>
+              )}
+
+
               <div
                 className="relative cursor-pointer"
                 onClick={() => setIsLangOpen(!isLangOpen)}

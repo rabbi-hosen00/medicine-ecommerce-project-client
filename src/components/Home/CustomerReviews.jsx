@@ -1,3 +1,4 @@
+import Container from "../Shared/Container";
 
 
 const CustomerReviews = () => {
@@ -27,9 +28,9 @@ const CustomerReviews = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-10">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl font-bold text-orange-500 mb-6 text-center">Customer Reviews</h2>
+    <div className=" py-10">
+      <Container className=" mx-auto border-4 border-red-500 px-4">
+        <h2 className="text-4xl font-semibold text-center mb-7 text-orange-600">Customer Reviews</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review) => (
             <div
@@ -51,7 +52,7 @@ const CustomerReviews = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

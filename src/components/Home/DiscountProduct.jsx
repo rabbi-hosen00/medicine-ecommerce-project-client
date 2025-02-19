@@ -9,6 +9,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import axios from "axios";
+import Container from "../Shared/Container";
+
 
 const DiscountProduct = () => {
     // const axiosSecure = useAxiosSecure();
@@ -32,46 +34,49 @@ const DiscountProduct = () => {
     );
 
     return (
-        <div className="my-8 w-full max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl text-orange-500 font-bold text-center mb-6">
-                Discounted Products
-            </h2>
-            <Swiper
-                key={medicines._id}
-                modules={[Navigation, Pagination]}
-                navigation
-                pagination={{ clickable: true }}
-                spaceBetween={30}
-                slidesPerView={3}
-                breakpoints={{
-                    640: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                }}
-            >
-                {discountedMedicines?.map((medicine) => (
-                    <SwiperSlide key={medicine.id}>
-                        <div className="border rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <img
-                                src={medicine.image}
-                                alt={medicine.itemName}
-                                className="w-full h-48 object-cover rounded-md mb-3"
-                            />
-                            <h3 className="text-lg font-semibold mb-2">
-                                {medicine.itemName}
-                            </h3>
-                            <p className="text-gray-600">
-                                Price: ${medicine.unitPrice}
-                            </p>
+        <Container>
+            <div className="my-8   border-4 border-red-500 px-4">
+                <h2 className="text-3xl text-orange-500 font-bold text-center mb-6">
+                    Discounted Products
+                </h2>
+                <Swiper
+                    key={medicines._id}
+                    modules={[Navigation, Pagination]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    spaceBetween={30}
+                    slidesPerView={3}
+                    breakpoints={{
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }}
+                >
+                    {discountedMedicines?.map((medicine) => (
+                        <SwiperSlide key={medicine.id}>
+                            <div className="border rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow duration-300">
+                                <img
+                                    src={medicine.image}
+                                    alt={medicine.itemName}
+                                    className="w-full h-48 object-cover rounded-md mb-3"
+                                />
+                                <h3 className="text-lg font-semibold mb-2">
+                                    {medicine.itemName}
+                                </h3>
+                                <p className="text-gray-600">
+                                    Price: ${medicine.unitPrice}
+                                </p>
 
-                            <p className="text-red-500 font-medium">
-                                {medicine.discountPercentage}% OFF
-                            </p>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
+                                <p className="text-red-500 font-medium">
+                                    {medicine.discountPercentage}% OFF
+                                </p>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+        </Container>
+
     );
 };
 

@@ -33,7 +33,7 @@ const CategoryMedicine = () => {
                 <h2 className="text-4xl font-semibold text-center mb-7 text-orange-600"> Medicine Category</h2>
             </div>
             <Container>
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <div className="grid  w-full grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7">
                     {
                         categories.map((catecory, idx) => <MedicineCategoryCard key={idx} catecory={catecory}></MedicineCategoryCard>)
                     }

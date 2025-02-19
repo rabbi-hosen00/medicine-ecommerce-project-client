@@ -20,7 +20,7 @@ const QuerySupport = () => {
     };
 
     return (
-        <div className="py-10 bg-gray-50">
+        <div className="py-10 w-11/12 mx-auto bg-gray-50">
             <div className="container mx-auto px-4">
                 <div className="max-w-md mx-auto bg-white text-gray-800 shadow-sm rounded-lg p-4">
                     <h2 className="text-xl font-bold mb-4 text-center text-gray-700">
